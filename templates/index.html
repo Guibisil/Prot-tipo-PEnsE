@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block titulo %}PEnsE{% endblock %}
+
+<!--main-->
+{% block conteudo %}
+
+    <section class="container p-4">
+
+        <article class="row px-4 pb-2" style="border-bottom: 1px solid rgb(102, 102, 192);">
+            <div class="col-6"><p class="m-0 h2 pt-1" style="color:rgb(102, 102, 192)">Projetos Submetidos</p></div>
+
+            <div class="col-6 text-end">
+                <a href="/submeter" style="text-decoration: none;"><button class="btn btn-primary m-0">Submeter Projeto</button></a>
+            </div>
+        </article>
+
+
+        <!--sem trabalhos-->
+        {%if lista == []%}
+            <article class="container text-center my-5 pt-5">
+                <p class="text-secondary"><i>--- Nenhum trabalho submetido ainda. Seja o primeiro! ---</i></p>
+            </article>
+
+        <!--renderiza trabalhos-->
+        {%else%}
+            <article class="row g-3 p-3 pt-5">
+                {%for trabalho in lista%}
+                    
+                    <div class="col-lg-4 p-4 m-0">
+                        <div class="shadow rounded-3 p-3">
+                            <div style="min-height:90px">
+                                <p class="h4 py-3 titulo" title="{{trabalho.titulo}}" style="color:rgb(102, 102, 192)">
+                                    {{trabalho.titulo}}
+                                </p>
+                            </div>
+                            <hr>
+                            <p class="autor" title="{{trabalho.autor}}"><b>Autor: </b>{{trabalho.autor}}</p>
+                            <p><b>Modalidade: </b>{{trabalho.modalidade}}</p>    
+                            <hr>
+                            <div class="text-center">
+                                <a href="/" style="text-decoration: none;" target="_blank">
+                                    <button class="btn btn-outline-primary">Visualizar</button>
+                                </a>
+                            </div>    
+                        </div>
+                    </div>
+
+                {%endfor%}
+            </article>
+        
+        
+        {%endif%}
+
+    </section>
+
+{%endblock%}
